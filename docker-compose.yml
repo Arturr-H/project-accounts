@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mongo_account_manager: 
+    image: mongo:4
+    container_name: mongo_account_manager
+    environment:
+      - AUTH=yes
+      - MONGODB_ADMIN_USER=artur
+      - MONGODB_ADMIN_PASS=password
+      - MONGODB_APPLICATION_DATABASE=sample
+      - MONGODB_APPLICATION_USER=aashrey
+      - MONGODB_APPLICATION_PASS=admin123
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./:/usr/src/app
+      - mongodata:/data/db
+    restart: always
+
+  rust:
+    build:
+      context: .
+      dockerfile: Main.Dockerfile
+
+    container_name: rust
+    ports:
+      - "8080:8080"
+volumes:
+  mongodata:

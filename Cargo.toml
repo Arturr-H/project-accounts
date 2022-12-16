@@ -1,0 +1,31 @@
+[package]
+name = "projects-accounts"
+version = "0.1.0"
+edition = "2021"
+description = "Use this account manager to easily set up accounts for any project"
+
+[dependencies]
+responder = "0.1.982"
+jsonwebtoken = "8.1.0"
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+regex = "1.6.0"
+sha3 = "0.10.1"
+image = "0.24.2"
+chunked_transfer = "1.4.0"
+base64 = "0.13.0"
+
+# UUID-generator
+[dependencies.uuid]
+version = "1.1.2"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]
+
+# Mongo Database
+[dependencies.mongodb]
+mongodb = "2.1.0"
+default-features = false
+features = ["sync"]
